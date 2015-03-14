@@ -16,6 +16,14 @@ var getAttributes = function(DataTypes){
                 isInt: true
             }
         },
+        color: {
+            type: DataTypes.STRING
+        },
+        calendar_view: {
+            type: DataTypes.ENUM,
+            values: ['year', 'month', 'week', 'day'],
+            defaultValue: 'week'
+        },
         status: {
             type: DataTypes.ENUM,
             values: ['pending', 'active', 'inactive'],
