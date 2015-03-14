@@ -14,11 +14,19 @@ var app = express();
 var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
+var db = require('./models');
 
-// Start server
-server.listen(config.port, config.ip, function () {
-  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+
+//Sync db
+db.sequelize.sync().then(function () {
+    console.log('========syncing db complete========');
+    // Start server
+    server.listen(config.port, config.ip, function () {
+        console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+        console.log('===================================');
+    });
 });
 
 // Expose app
-exports = module.exports = app;
+//exports = module.exports = app;
+module.exports = app;
