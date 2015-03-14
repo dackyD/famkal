@@ -21,13 +21,13 @@ var getAttributes = function (DataTypes) {
         description: {
             type: DataTypes.TEXT
         },
-        dt_start: {
+        starts_at: {
             type: DataTypes.DATE,
             validate: {
                 isDate: true
             }
         },
-        dt_end: {
+        ends_at: {
             type: DataTypes.DATE,
             validate: {
                 isDate: true

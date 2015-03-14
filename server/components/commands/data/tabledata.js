@@ -70,29 +70,29 @@ module.exports = {
             title: 'Event 1',
             location: 'Oslo',
             description: 'Event 1 i Oslo',
-            dt_start: new Date(),
-            dt_end: new Date()
+            starts_at: new Date(),
+            ends_at: new Date()
         },
         {
             title: 'Event 2',
             location: 'Bergen',
             description: 'Event 2 i Bergen',
-            dt_start: new Date(),
-            dt_end: new Date()
+            starts_at: new Date(),
+            ends_at: new Date()
         },
         {
             title: 'Event 3',
             location: 'Trondheim',
             description: 'Event 3 i Trondheim',
-            dt_start: new Date(),
-            dt_end: new Date()
+            starts_at: new Date(),
+            ends_at: new Date()
         },
         {
             title: 'Event 4',
             location: 'Stavanger',
             description: 'Event 4 i Stavanger',
-            dt_start: new Date(),
-            dt_end: new Date()
+            starts_at: new Date(),
+            ends_at: new Date()
         }
     ],
     members: [

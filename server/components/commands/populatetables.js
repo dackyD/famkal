@@ -87,11 +87,11 @@ var createEvents = function (calendars, callback) {
                 var days = Math.floor((Math.random() * 10) + 1);
                 event.calendar_id = calendar.id;
                 if (flag === 1) {
-                    event.dt_start = moment(event.dt_start).subtract(days, 'days');
-                    event.dt_end = moment(event.dt_start).add(4, 'hours');
+                    event.starts_at = moment(event.starts_at).subtract(days, 'days');
+                    event.ends_at = moment(event.starts_at).add(4, 'hours');
                 } else {
-                    event.dt_start = moment(event.dt_start).add(days, 'days');
-                    event.dt_end = moment(event.dt_start).add(4, 'hours');
+                    event.starts_at = moment(event.starts_at).add(days, 'days');
+                    event.ends_at = moment(event.starts_at).add(4, 'hours');
                 }
                 return Event.build(event).save().then(function (e) {
                     console.log('success saving event:', e.get({plain: true}));
