@@ -10,11 +10,14 @@ var morgan = require('morgan');
 var compression = require('compression');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
 var cors = require('cors');
+var passportConfig = require('./passport')();
+var passport = require('passport');
 
 module.exports = function (app) {
     var env = app.get('env');
@@ -28,6 +31,15 @@ module.exports = function (app) {
     app.use(methodOverride());
     app.use(cookieParser());
     app.use(cors());
+
+    // AUTHENTICATION WITH PASSPORT
+    app.use(session({
+        saveUninitialized: true,
+        resave: true,
+        secret: config.secrets.session
+    }));
+    app.use(passport.initialize());
+    app.use(passport.session());
 
 
     if ('production' === env) {
