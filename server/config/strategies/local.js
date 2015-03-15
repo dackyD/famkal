@@ -17,7 +17,7 @@ module.exports = function () {
             .success(function (account) {
                 if (!account) {
                     done(null, false, {message: 'Unknown account'});
-                } else if (account.authenticate(password)) {
+                } else if (!account.authenticate(password)) {
                     done(null, false, {message: 'Invalid password'})
                 } else {
                     done(null, account);

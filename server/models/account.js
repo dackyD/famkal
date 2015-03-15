@@ -4,7 +4,7 @@
 
 var crypto = require('crypto');
 
-var getAttributes = function(DataTypes) {
+var getAttributes = function (DataTypes) {
 
     return {
         first_name: {
@@ -41,9 +41,9 @@ var getAttributes = function(DataTypes) {
 };
 
 
-var getClassMethods = function() {
+var getClassMethods = function () {
     return {
-        associate: function(models){
+        associate: function (models) {
             console.log('============ running account associate');
             models.Account.belongsToMany(models.Calendar, {through: 'calendar_account', as: 'Calendars'});
             models.Account.hasMany(models.Member, {foreignKey: 'account_id', as: 'Members'});
@@ -52,13 +52,18 @@ var getClassMethods = function() {
 };
 
 
-var getInstanceMethods = function() {
+var getInstanceMethods = function () {
     return {
         doHashPassword: function (password) {
             return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
         },
         hashPassword: function () {
-            this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+            //this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            this.salt = text;
             this.password = this.doHashPassword(this.password);
             return this;
         },
@@ -67,7 +72,6 @@ var getInstanceMethods = function() {
         }
     };
 };
-
 
 exports.getAttributes = getAttributes;
 exports.getClassMethods = getClassMethods;
