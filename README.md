@@ -13,5 +13,6 @@ TODO:
 - API: getCalendarsByMember
 - API: getEventsByCalendar
 - API: addEventByMember
+- API: editEventByMember
 - API: addReminderByEvent
 - API: Logout
